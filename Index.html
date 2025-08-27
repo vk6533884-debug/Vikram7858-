@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Open Facebook & YouTube</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Helvetica Neue", Arial;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(180deg,#f6f9ff,#eef6ff);
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(20,40,80,0.08);
+      text-align: center;
+      width: 320px;
+    }
+    h1 { margin: 0 0 10px; font-size: 20px; }
+    p { margin: 0 0 18px; color: #555; font-size: 14px; }
+    button {
+      display: inline-block;
+      padding: 10px 14px;
+      margin: 6px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .fb { background:#1877F2; color:white; }
+    .yt { background:#FF0000; color:white; }
+    .both { background:#333; color:white; width:100%; margin-top:12px; }
+    a.small { display:block; margin-top:10px; font-size:12px; color:#666; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Quick Open</h1>
+    <p>नीचे बटन क्लिक कर के खोलें:</p>
+
+    <button class="fb" id="openFb">Open Facebook</button>
+    <button class="yt" id="openYt">Open YouTube</button>
+
+    <button class="both" id="openBoth">Open Both</button>
+
+    <a class="small" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Direct link — Facebook</a>
+    <a class="small" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">Direct link — YouTube</a>
+  </div>
+
+  <script>
+    // URL set करो — चाहो तो इन्हें अपने पसंद के किसी और पेज से replace कर सकते हो
+    const fbUrl = "https://www.facebook.com";
+    const ytUrl = "https://www.youtube.com";
+
+    // Single open (user gesture होने पर browser allow करेगा)
+    document.getElementById("openFb").addEventListener("click", () => {
+      window.open(fbUrl, "_blank", "noopener,noreferrer");
+    });
+
+    document.getElementById("openYt").addEventListener("click", () => {
+      window.open(ytUrl, "_blank", "noopener,noreferrer");
+    });
+
+    // Try to open both (कभी-कभी popup-blocker रोक सकता है)
+    document.getElementById("openBoth").addEventListener("click", () => {
+      // एक क्लिक से दो विंडो/टैब खोलना कई browsers में अनुमति होती है क्योंकि यह user gesture है,
+      // पर popup-blocker होने पर नहीं खुलेंगे — तब user अलग से खोल ले।
+      window.open(fbUrl, "_blank", "noopener,noreferrer");
+      window.open(ytUrl, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>
